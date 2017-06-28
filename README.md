@@ -37,6 +37,7 @@ The name of the serial interface looks like ttyS0.
  ```
 $ python TVauto.py ttyS0
 ```
+ttySo should be replaced by your serial interface name.
  
 ## References
 X4M300:[https://www.xethru.com/x4m300-presence-sensor.html](https://www.xethru.com/x4m300-presence-sensor.html)
