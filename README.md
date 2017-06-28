@@ -39,7 +39,11 @@ $ python TVauto.py ttyS0
  
 ## References
 X4M300:[https://www.xethru.com/x4m300-presence-sensor.html](https://www.xethru.com/x4m300-presence-sensor.html)
+
 HDMI-CEC:[https://en.wikipedia.org/wiki/Consumer_Electronics_Control](https://en.wikipedia.org/wiki/Consumer_Electronics_Control)
+
 labcec:[https://github.com/Pulse-Eight/libcec](https://github.com/Pulse-Eight/libcec)
+
 CEC commands: [http://www.cec-o-matic.com/](http://www.cec-o-matic.com/)
+
 Using  cec-client and libcec on Respberry Pi: [https://www.raspberrypi.org/forums/viewtopic.php?f=29&t=53481](https://www.raspberrypi.org/forums/viewtopic.php?f=29&t=53481)
