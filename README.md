@@ -32,6 +32,7 @@ $ python setup.py install
 $ dmesg | grep tty
 ```
 The name of the serial interface looks like ttyS0.
+
 4. Download [TVauto.py](https://github.com/charlieshao5189/TV-auto-on-off/blob/master/TVauto.py) from this repository. Run
  ```
 $ python TVauto.py ttyS0
