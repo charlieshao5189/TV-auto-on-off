@@ -14,7 +14,7 @@ The purpose of this design is using Xethru X4M300 sensor to detect human presenc
 * Python: v2.7 
 * labcec: v4.0.2
 * X4M300 ModuleConnector: rpi-1.1.8  
-* GCC: 
+
 
 ## Deloyment
 
