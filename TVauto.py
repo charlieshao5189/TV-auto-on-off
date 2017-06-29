@@ -11,28 +11,6 @@ import time
 from pymoduleconnector import ModuleConnector
 from time import sleep
 
-
-
-
-XTID_SM_RUN     = int("1",16)
-XTID_SM_IDLE    = int("11",16)
-XTID_SM_MANUAL  = int("12",16)
-XTID_SM_STOP    = int("13",16)
-
-
-XTID_SSIC_FIRMWAREID                = int("0x02",16)
-XTID_SSIC_VERSION                   = int("0x03",16)
-XTID_SSIC_BUILD                     = int("0x04",16)
-XTID_SSIC_SERIALNUMBER              = int("0x06",16)
-
-
-XTS_ID_APP_PRESENCE            = int("0x014d4ab8", 16)
-
-
-XTS_ID_PRESENCE_SINGLE         = int("0x723bfa1e", 16)
-XTS_ID_PRESENCE_MOVINGLIST     = int("0x723bfa1f", 16)
-
-
 class pyCecClient:
   cecconfig = cec.libcec_configuration()
   lib = {}
@@ -80,7 +58,7 @@ class pyCecClient:
     else:
       if self.lib.Open(adapter):
         print("connection opened")
-        self.MainLoop()
+        ##self.MainLoop()
       else:
         print("failed to open a connection to the CEC adapter")
 
@@ -143,9 +121,82 @@ class pyCecClient:
       x += 1
     print(strLog)
 
+  # main loop, ask for commands
+  def MainLoop(self):
+    runLoop = True
+    while runLoop:
+      command = raw_input("Enter command:").lower()
+      if command == 'q' or command == 'quit':
+        runLoop = False
+      elif command == 'self':
+        self.ProcessCommandSelf()
+      elif command == 'as' or command == 'activesource':
+        self.ProcessCommandActiveSource()
+      elif command == 'standby':
+        self.ProcessCommandStandby()
+      elif command == 'scan':
+        self.ProcessCommandScan()
+      elif command[:2] == 'tx':
+        self.ProcessCommandTx(command[3:])
+    print('Exiting...')
 
-def x4m300_presence_simpleoutput(device_name, detection_zone=(0.5,9), sensitivity=5):
+  # logging callback
+  def LogCallback(self, level, time, message):
+    if level > self.log_level:
+      return 0
 
+    if level == cec.CEC_LOG_ERROR:
+      levelstr = "ERROR:   "
+    elif level == cec.CEC_LOG_WARNING:
+      levelstr = "WARNING: "
+    elif level == cec.CEC_LOG_NOTICE:
+      levelstr = "NOTICE:  "
+    elif level == cec.CEC_LOG_TRAFFIC:
+      levelstr = "TRAFFIC: "
+    elif level == cec.CEC_LOG_DEBUG:
+      levelstr = "DEBUG:   "
+
+    print(levelstr + "[" + str(time) + "]     " + message)
+    return 0
+
+  # key press callback
+  def KeyPressCallback(self, key, duration):
+    print("[key pressed] " + str(key))
+    return 0
+
+  # command received callback
+  def CommandCallback(self, cmd):
+    print("[command received] " + cmd)
+    return 0
+
+  def __init__(self):
+    self.SetConfiguration()
+
+
+
+XTID_SM_RUN     = int("1",16)
+XTID_SM_IDLE    = int("11",16)
+XTID_SM_MANUAL  = int("12",16)
+XTID_SM_STOP    = int("13",16)
+
+
+XTID_SSIC_FIRMWAREID                = int("0x02",16)
+XTID_SSIC_VERSION                   = int("0x03",16)
+XTID_SSIC_BUILD                     = int("0x04",16)
+XTID_SSIC_SERIALNUMBER              = int("0x06",16)
+
+
+XTS_ID_APP_PRESENCE            = int("0x014d4ab8", 16)
+
+
+XTS_ID_PRESENCE_SINGLE         = int("0x723bfa1e", 16)
+XTS_ID_PRESENCE_MOVINGLIST     = int("0x723bfa1f", 16)
+
+
+def x4m300_presence_simpleoutput(device_name, detection_zone=(0.5,1.5), sensitivity=5):
+      
+    hdmicec = pyCecClient()
+    hdmicec.InitLibCec()
 
     # User settings
     detzone_start = detection_zone[0]
@@ -206,10 +257,10 @@ def x4m300_presence_simpleoutput(device_name, detection_zone=(0.5,9), sensitivit
 
     print("Waiting for data...")
 
-
+    prepresence_state = 0; 
     while True:
         time.sleep(0.1)
-
+        
 
         while x4m300.peek_message_presence_single():
             presence_single = x4m300.read_message_presence_single()
@@ -220,16 +271,17 @@ def x4m300_presence_simpleoutput(device_name, detection_zone=(0.5,9), sensitivit
                 + ", SignalQuality: " + str(presence_single.signal_quality)
                 )
             # turn on/off TV according to humman persence state 
-            if 1 == presence_single and 0 == prePresence_single:
+            if 1 == presence_single.presence_state and 0 == prepresence_state:
                  #turn on
-                 cec.ProcessCommandActiveSource()
-                 print  "Turn on TV"
-            elsif 0 == presence_single and 1 == prePresence_single:
+                 hdmicec.ProcessCommandActiveSource()
+                 print  "\n\n Turn on TV \n\n"
+            elif 0 == presence_single.presence_state and 1 == prepresence_state:
                  #turn off
-                 cec.ProcessCommandStandby()
-                 print  "Turn off TV"
+                 hdmicec.ProcessCommandStandby()
+                 print  "\n\n Turn off TV \n\n"
             else:
-                 print "no turn on/off action to TV"
+                 print "no action to TV"
+            prepresence_state = presence_single.presence_state 
     return x2m200
 
 
@@ -237,9 +289,8 @@ def x4m300_presence_simpleoutput(device_name, detection_zone=(0.5,9), sensitivit
 
 def main():
     import sys
+    import cec
     from optparse import OptionParser
-    
-    cec = pyCecClient()
    
     parser = OptionParser()
     parser.add_option(
@@ -252,7 +303,7 @@ def main():
 
     parser.add_option('-z', '--detection_zone', nargs=2, type='float',
         help='Start and stop of detection zone.', metavar='START STOP',
-        default=(0.5, 9))
+        default=(0.5, 1.5))
 
 
     parser.add_option('-s', '--sensitivity', nargs=1, type='int',
