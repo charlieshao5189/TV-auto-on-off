@@ -31,13 +31,13 @@ $ python setup.py install
 ```
 $ dmesg | grep tty
 ```
-The name of the serial interface looks like ttyS0.
+The name of the serial interface looks like ttyACM0(in my situation).
 
 4. Download [TVauto.py](https://github.com/charlieshao5189/TV-auto-on-off/blob/master/TVauto.py) from this repository. Run
  ```
-$ python TVauto.py ttyS0
+$ python TVauto.py -d ttyACM0
 ```
-ttyS0 should be replaced by your serial interface name.
+ttyACM0 should be replaced by your serial interface name.
 
 If evey step goes smoothly, it will just cost half one hour to deploy and test this application.
  
