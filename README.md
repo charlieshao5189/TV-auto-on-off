@@ -39,7 +39,7 @@ $ python TVauto.py ttyS0
 ```
 ttyS0 should be replaced by your serial interface name.
 
-If evey step goes smoothly, it will just cost half one hour to delopy and test this application.
+If evey step goes smoothly, it will just cost half one hour to deploy and test this application.
  
 ## References
 X4M300:[https://www.xethru.com/x4m300-presence-sensor.html](https://www.xethru.com/x4m300-presence-sensor.html)
