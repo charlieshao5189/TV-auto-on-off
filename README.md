@@ -16,12 +16,12 @@ The purpose of this design is using Xethru X4M300 sensor to detect human presenc
 * X4M300 ModuleConnector: rpi-1.1.8  
 
 
-## Deloyment
+## Deployment
 
 
-1. Install [labcec](https://github.com/Pulse-Eight/libcec) on Raspbian, following instructions on [this websit](https://github.com/Pulse-Eight/libcec/wiki/Raspberry-Pi-set-up), cec-client will also be installed. The python-libcec libitory may not be installed properly, running following command can add python-libcec manully.
+1. Install [labcec](https://github.com/Pulse-Eight/libcec) on Raspbian, following instructions on [this website](https://github.com/Pulse-Eight/libcec/wiki/Raspberry-Pi-set-up), cec-client will also be installed. The python-libcec library may not be installed correctly, running following command can add python-libcec manully.
 ```
-$ sudo apt-get get install python-libcec
+$ sudo apt-get install python-libcec
 ```
 2. Download X4M300 module connector from [XeThru Community](https://www.xethru.com/community/resources/module-connector-raspberry-pi.81/). Install python library pymoduleconnector by running the following command from the pymoduleconnector root directory:
 ```
@@ -37,7 +37,9 @@ The name of the serial interface looks like ttyS0.
  ```
 $ python TVauto.py ttyS0
 ```
-ttySo should be replaced by your serial interface name.
+ttyS0 should be replaced by your serial interface name.
+
+If evey step goes smoothly, it will just cost half one hour to delopy and test this application.
  
 ## References
 X4M300:[https://www.xethru.com/x4m300-presence-sensor.html](https://www.xethru.com/x4m300-presence-sensor.html)
