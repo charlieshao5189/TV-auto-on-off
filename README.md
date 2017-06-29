@@ -2,10 +2,18 @@
 
 The purpose of this design is using Xethru X4M300 sensor to detect human presence state at one place and turn on/off TV according to this state through HDMI-CEC, the whole project is deployed on Raspberry Pi.
 
+## Demonstration
+
+1. Backend running 
+[https://youtu.be/xYG9iZ3WUAg](https://youtu.be/xYG9iZ3WUAg)
+
+2. Auto turn on TV
+[https://youtu.be/nREWL4j3Qi4](https://youtu.be/nREWL4j3Qi4)
 
 ## Hardware connection 
 
-![TVauto](/TVauto.png)
+![TVauto](/datasheets/TVauto.png ==500x)
+![connection](/datasheets/connection.jpg ==500x)
 
 ## Development Environment
 
@@ -13,7 +21,7 @@ The purpose of this design is using Xethru X4M300 sensor to detect human presenc
 * Raspbian: v4.9
 * Python: v2.7 
 * labcec: v4.0.2
-* X4M300 ModuleConnector: rpi-1.1.8  
+* X4M300 ModuleConnector: rpi-1.1.8 
 
 
 ## Deployment
@@ -35,7 +43,7 @@ The name of the serial interface looks like ttyACM0(in my situation).
 
 4. Download [TVauto.py](https://github.com/charlieshao5189/TV-auto-on-off/blob/master/TVauto.py) from this repository. Run
  ```
-$ python TVauto.py -d ttyACM0
+$ python TVauto.py -d /dev/ttyACM0
 ```
 ttyACM0 should be replaced by your serial interface name.
 
