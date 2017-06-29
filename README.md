@@ -3,17 +3,21 @@
 The purpose of this design is using Xethru X4M300 sensor to detect human presence state at one place and turn on/off TV according to this state through HDMI-CEC, the whole project is deployed on Raspberry Pi.
 
 ## Demonstration
+Two demonstrations to show how this system work.
 
 1. Backend running 
+
 [https://youtu.be/xYG9iZ3WUAg](https://youtu.be/xYG9iZ3WUAg)
 
-2. Auto turn on TV
+2. Automatically turn on TV
+
 [https://youtu.be/nREWL4j3Qi4](https://youtu.be/nREWL4j3Qi4)
 
 ## Hardware connection 
 
-![TVauto](/datasheets/TVauto.png ==500x)
-![connection](/datasheets/connection.jpg ==500x)
+![TVauto](/datasheets/TVauto.png =500x)
+
+![connection](/datasheets/connection.jpg =500x)
 
 ## Development Environment
 
