@@ -7,6 +7,7 @@
 5. Integer former designs together on one python script.
 
 # Problems:
+
 1. python-ece libary dones not work on rpi3?
 Try to run python example, error occur:
 ```
@@ -24,3 +25,5 @@ the command:
 $ sudo apt-get get install python-libcec
 ```
 problem solved.
+
+2. Test ECE on one LG TV, turn-on works well but turn-off does not work. Check on the forum [https://www.raspberrypi.org/forums/viewtopic.php?t=99014](https://www.raspberrypi.org/forums/viewtopic.php?t=99014), it seems a common problem for LG Simplink. 
