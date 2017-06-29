@@ -6,10 +6,10 @@ The purpose of this design is using Xethru X4M300 sensor to detect human presenc
 Two demonstrations showing how this system work.
 
 1. Backend running 
-[https://youtu.be/xYG9iZ3WUAg](https://youtu.be/xYG9iZ3WUAg)
+[https://youtu.be/6rI6X9ovETM](https://youtu.be/6rI6X9ovETM)
 
 2. Automatically turn on TV (turn-off does not test since TV problem )
-[https://youtu.be/nREWL4j3Qi4](https://youtu.be/nREWL4j3Qi4)
+[https://youtu.be/_CS3PpktUMc](https://youtu.be/_CS3PpktUMc)
 
 ## Hardware connection 
 
