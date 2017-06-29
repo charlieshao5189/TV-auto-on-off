@@ -15,7 +15,7 @@ Two demonstrations showing how this system work.
 
 ![TVauto](/datasheets/TVauto.png)
 
-![connection](/datasheets/connection.jpg)
+![connection](/datasheets/connection.png)
 
 ## Development Environment
 
