@@ -47,9 +47,9 @@ The name of the serial interface looks like ttyACM0(in my situation).
  ```
 $ python TVauto.py -d /dev/ttyACM0
 ```
-ttyACM0 should be replaced by your serial interface name.
+ttyACM0 should be replaced by your serial interface name. The default human presence detection range is 0.5-1.5M.
 
-If evey step goes smoothly, it will just cost half one hour to deploy and test this application.
+If evey step goes smoothly, it will cost one hour to deploy and test this application.
  
 ## References
 X4M300:[https://www.xethru.com/x4m300-presence-sensor.html](https://www.xethru.com/x4m300-presence-sensor.html)
