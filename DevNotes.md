@@ -3,7 +3,7 @@
 1. Learn about HDMI ECE 
 2. Make HDMI ECE work on Raspbian, turn on/off TV through commands
 3. turn on/off TV through Python scripts
-4. Make X3M400 work on Raspbian, python based
+4. Make X4M300 work on Raspbian, python based
 5. Integer former designs together on one python script.
 
 # Problems:
