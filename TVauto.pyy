@@ -20,10 +20,7 @@ class pyCecClient:
   # create a new libcec_configuration
   def SetConfiguration(self):
     self.cecconfig.strDeviceName   = "pyLibCec"
-    self.cecconfig.bActivateSource = 0
-    self.cecconfig.deviceTypes.Add(cec.CEC_DEVICE_TYPE_RECORDING_DEVICE)
-    self.cecconfig.clientVersion = cec.LIBCEC_VERSION_CURRENT
-
+    
   def SetLogCallback(self, callback):
     self.cecconfig.SetLogCallback(callback)
 
@@ -45,7 +42,7 @@ class pyCecClient:
       retval = adapter.strComName
     return retval
 
-  # initialise libCEC
+  # initialise libCEs
   def InitLibCec(self):
     self.lib = cec.ICECAdapter.Create(self.cecconfig)
     # print libCEC version and compilation information
